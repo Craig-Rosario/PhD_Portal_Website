@@ -1,0 +1,10 @@
+  .slick-list {
+    height: 100% !important;
+  }
+  
+  .slick-track {
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+  }
+  
