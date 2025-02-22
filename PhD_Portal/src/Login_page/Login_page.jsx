@@ -82,7 +82,7 @@ const MailComponent = () => {
         <img src={google_logo} className="w-7 h-7"></img><h2 className="flex items-center justify-center text-[#B7202E] font-semibold">Login with Somaiya Mail ID </h2>
       </button>
       <p className="text-center text-sm mt-4">
-        First Time? <a href="#" className="text-[#B7202E]">Sign Up</a>
+        First Time? <Link to ="/register" className="text-[#B7202E]">Sign Up</Link>
       </p>
     </div>
   );
