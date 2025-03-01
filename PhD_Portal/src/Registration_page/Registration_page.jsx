@@ -1,9 +1,9 @@
-import {React, useState} from "react";
+import {React, useState, useEffect, useRef } from "react";
 import Somaiya_Trust from "../assets/Somaiya_Trust.png";
 import KJSSE from "../assets/SVU_KJSCE.png";
 import Overview from "./Overview.jsx";
-// import PersonalDetails from "./PersonalDetails";
-// import EducationalDetails from "./EducationalDetails";
+import PersonalDetails from "./Personal_details";
+import EducationalDetails from "./Educational_details";
 // import CourseDetails from "./CourseDetails";
 // import UploadDocuments from "./UploadDocuments";
 
@@ -12,18 +12,21 @@ import Overview from "./Overview.jsx";
 const Registration_page = ({ children }) => {
 
   const [activeTab, setActiveTab] = useState("overview");
+  const formRef = useRef(null); // Reference to the form container
 
-  const components = {
-    overview: <Overview />,
-    // personalDetails: <PersonalDetails />,
-    // educationalDetails: <EducationalDetails />,
-    // courseDetails: <CourseDetails />,
-    // uploadDocuments: <UploadDocuments />,
-  };
+  function handleChange(newValue){
+    setActiveTab(newValue);
+  }
 
-  
+  // Scroll to top when activeTab changes {needs to be fixed}
+  useEffect(() => {
+    if (formRef.current) {
+      formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [activeTab]);
+
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col overflow-auto ">
+    <div className="min-h-screen bg-gray-100 flex flex-col overflow-auto scroll-smooth">
       <div className="fixed w-full top-0 z-10 ">
       {/* Header */}
       <header className="bg-white shadow p-4 flex justify-between items-center">
@@ -53,7 +56,9 @@ const Registration_page = ({ children }) => {
       </div>
       {/* Main Content */}
       <main className="container mx-auto p-6 bg-white shadow-md rounded-lg mt-30">
-        {components[activeTab]}
+        {activeTab == "overview" && <Overview setActiveTab={setActiveTab} />}
+        {activeTab == "personalDetails" && <PersonalDetails setActiveTab={setActiveTab} />}
+        {activeTab == "educationalDetails" && <EducationalDetails setActiveTab={setActiveTab} />}
       </main>
 
     </div>

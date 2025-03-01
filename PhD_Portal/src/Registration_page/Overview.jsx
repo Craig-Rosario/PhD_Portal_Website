@@ -1,9 +1,9 @@
 import React from "react";
 
-const Overview = () => {
+const Overview = ({setActiveTab}) => {
   return (
     <div className="p-4 bg-white shadow-md rounded-md">
-      <h2 className="text-3xl font-medium text-red-700 mb-4">Overview of PhD Programme & Registration Process</h2>
+      <h2 className="text-3xl font-medium text-[#B7202E] mb-4">Overview of PhD Programme & Registration Process</h2>
       
       {/* Introduction Section */}
       <p className="text-2xl text-[#004466] mb-4">
@@ -58,8 +58,8 @@ const Overview = () => {
       </div>
 
       <div className="flex justify-end mt-6 space-x-4">
-        <button className="bg-gray-500 text-white py-2 px-4 rounded">Previous</button>
-        <button className="bg-red-600 text-white py-2 px-4 rounded">Proceed</button>
+        <button className="bg-gray-500 text-white py-2 px-4 rounded cursor-not-allowed">Previous</button>
+        <button className="bg-[#B7202E] text-white py-2 px-4 rounded cursor-pointer hover:bg-[#801721]" onClick={() => setActiveTab("personalDetails")}>Proceed</button>
       </div>
     </div>
   );
