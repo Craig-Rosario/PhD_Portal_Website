@@ -1,10 +1,21 @@
-  .slick-list {
-    height: 100% !important;
-  }
+
+.slick-track {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
   
-  .slick-track {
-    display: flex !important;
-    align-items: center !important;
-    height: 100% !important;
-  }
-  
+/* Make the slider container take full height */
+.slick-slider, .slick-list, .slick-track {
+  height: 100% !important;
+}
+
+/* Make sure slides take full height */
+.slick-slide {
+  height: 100% !important;
+}
+
+/* This ensures the div inside the slide also takes full height */
+.slick-slide > div {
+  height: 100% !important;
+}

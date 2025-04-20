@@ -72,7 +72,7 @@ const EducationalDetails = ({ setActiveTab }) => {
       <h2 className="text-3xl font-medium text-[#B7202E] mb-4 border-b pb-2">Educational Details</h2>
 
       {/* Undergraduate Section */}
-      <h3 className="font-semibold mt-4 block font-semibold text-[#004466]">UNDER GRADUATE or Equivalent</h3>
+      <h3 className="font-semibold mt-4 block text-[#004466]">UNDER GRADUATE or Equivalent</h3>
       <div className="grid grid-cols-1 gap-2 mt-2 mb-2">
         <input type="text" placeholder="Title of the degree" value={ugForm.title} 
           onChange={(e) => setUgForm({ ...ugForm, title: e.target.value })} className="p-2 bg-[#FFEBE9FE] rounded text-center" />

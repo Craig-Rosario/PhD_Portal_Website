@@ -31,7 +31,7 @@ const LoginPage = () => {
 
   return (
 <div className="h-screen w-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md flex w-5/6 h-6/7">
+      <div className="bg-white p-6 rounded-lg shadow-md flex w-5/6 h-[90vh] md:w-3/4  mx-auto overflow-hidden">
         <div className="w-1/2 h-full p-4 flex items-center justify-center border-r">
           <Slider infinite autoplay autoplaySpeed={3000} arrows={false} adaptiveHeight={true} className="w-full h-full">
             {images.map((image, index) => (

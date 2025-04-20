@@ -4,7 +4,9 @@ import KJSSE from "../assets/SVU_KJSCE.png";
 import Overview from "./Overview.jsx";
 import PersonalDetails from "./Personal_details";
 import EducationalDetails from "./Educational_details";
-// import CourseDetails from "./CourseDetails";
+import CourseDetails from "./Course_details";
+import UploadDocuments from "./Documents";
+import "./Registration_page.css";
 // import UploadDocuments from "./UploadDocuments";
 
 
@@ -31,7 +33,7 @@ const Registration_page = ({ children }) => {
       {/* Header */}
       <header className="bg-white shadow p-4 flex justify-between items-center">
         <img src={KJSSE} alt="Somaiya Logo" className="h-10" />
-        <h1 className="text-3xl font-bold text-[#B7202E]">Shodh Ganga</h1>
+        <h1 className="text-3xl font-bold text-[#B7202E] mr-20">Shodh Ganga</h1>{/* !!! added right margin - 20 (mr-20) to center the text temporarily  */}
         <img src={Somaiya_Trust} alt="Somaiya Trust" className="h-10" />
       </header>
 
@@ -59,8 +61,9 @@ const Registration_page = ({ children }) => {
         {activeTab == "overview" && <Overview setActiveTab={setActiveTab} />}
         {activeTab == "personalDetails" && <PersonalDetails setActiveTab={setActiveTab} />}
         {activeTab == "educationalDetails" && <EducationalDetails setActiveTab={setActiveTab} />}
+        {activeTab == "courseDetails" && <CourseDetails setActiveTab={setActiveTab} />}
+        {activeTab == "uploadDocuments" && <UploadDocuments setActiveTab={setActiveTab} />}
       </main>
-
     </div>
   );
 };

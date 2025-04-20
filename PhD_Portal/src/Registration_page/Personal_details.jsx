@@ -36,7 +36,7 @@ const PersonalDetails = ({setActiveTab}) => {
           <option value="" selected disabled hidden ><h2 className="text-[#FFEBE9FE]">State</h2></option>
           {states.map( (x,y) => <option key={y}>{x}</option> )}
         </select>
-        <input type="text" placeholder="Pin Code" className="p-2 bg-[#FFEBE9FE] rounded text-center" />
+        <input type="number" placeholder="Pin Code" className="p-2 bg-[#FFEBE9FE] rounded text-center" />
       </div>
 
       {/* Permanent Address */}
@@ -92,12 +92,12 @@ const PersonalDetails = ({setActiveTab}) => {
       <h3 className="text-3xl font-medium text-[#B7202E] mb-4 mt-6 border-b pb-2">Contact Details</h3>
       <label className="font-semibold text-[#004466]">Mobile Number</label>
       <div className="grid grid-cols-2 gap-4 mt-2 mb-4">
-        <input type="text" placeholder="Mobile Number" className="p-2 bg-[#FFEBE9FE] rounded text-center" />
-        <input type="email" placeholder="Alternate Mobile Number" className="p-2 bg-[#FFEBE9FE] rounded text-center" />
+        <input type="number" placeholder="Mobile Number" className="p-2 bg-[#FFEBE9FE] rounded text-center" />
+        <input type="number" placeholder="Alternate Mobile Number" className="p-2 bg-[#FFEBE9FE] rounded text-center" />
       </div>
       <label className="font-semibold text-[#004466]">Email ID</label>
       <div className="grid grid-cols-2 gap-4 mt-2 mb-4">
-        <input type="text" placeholder="Email ID" className="p-2 bg-[#FFEBE9FE] rounded text-center" />
+        <input type="email" placeholder="Email ID" className="p-2 bg-[#FFEBE9FE] rounded text-center" />
         <input type="email" placeholder="Alternate Email ID" className="p-2 bg-[#FFEBE9FE] rounded text-center" />
       </div>
 
