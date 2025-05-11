@@ -1,6 +1,9 @@
-import React from "react";
+import {React, useState} from "react";
 
 const Overview = ({setActiveTab}) => {
+  
+  const [isChecked, setIsChecked] = useState(false);
+  
   return (
     <div className="p-4 bg-white shadow-md rounded-md">
       <h2 className="text-3xl font-medium text-[#B7202E] mb-4">Overview of PhD Programme & Registration Process</h2>
@@ -52,14 +55,16 @@ const Overview = ({setActiveTab}) => {
       <div className="mt-6 border-t pt-4">
         <h2 className="text-[#B7202E] text-2xl mb-2">Declaration</h2>
         <label className="flex items-center text-gray-700">
-          <input type="checkbox" className="mr-2" />
+          <input type="checkbox" className="mr-2" checked={isChecked} onChange={(e) => setIsChecked(e.target.checked)}/>
           I agree that all the information provided is true to the best of my knowledge, and all the documents submitted are original.
         </label>
       </div>
 
       <div className="flex justify-end mt-6 space-x-4">
         <button className="bg-gray-500 text-white py-2 px-4 rounded cursor-not-allowed">Previous</button>
-        <button className="bg-[#B7202E] text-white py-2 px-4 rounded cursor-pointer hover:bg-[#801721]" onClick={() => setActiveTab("personalDetails")}>Proceed</button>
+        <button className={`py-2 px-4 rounded text-white 
+          ${isChecked? "bg-[#B7202E] hover:bg-[#801721] cursor-pointer" : "bg-gray-400 cursor-not-allowed"}`} 
+          onClick={() => { if(isChecked){ setActiveTab("personalDetails") } }} disabled={!isChecked}>Proceed</button>
       </div>
     </div>
   );
