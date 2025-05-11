@@ -1,4 +1,5 @@
 import {React, useState} from "react";
+import { Link } from 'react-router-dom';
 import lg2 from "../assets/Lg_2.jpg";
 import lg1 from "../assets/Lg_1.jpg"; 
 import lg3 from "../assets/Lg_3.jpg";
@@ -10,7 +11,6 @@ import "slick-carousel/slick/slick-theme.css";
 import "./Login_page.css";
 
 const images = [lg1,lg2,lg3];
-
 
 const LoginPage = () => {
   const [active, setActive] = useState("login");
@@ -31,7 +31,7 @@ const LoginPage = () => {
 
   return (
 <div className="h-screen w-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md flex w-5/6 h-6/7">
+      <div className="bg-white p-6 rounded-lg shadow-md flex w-5/6 h-[90vh] md:w-3/4  mx-auto overflow-hidden">
         <div className="w-1/2 h-full p-4 flex items-center justify-center border-r">
           <Slider infinite autoplay autoplaySpeed={3000} arrows={false} adaptiveHeight={true} className="w-full h-full">
             {images.map((image, index) => (
@@ -57,7 +57,7 @@ const LoginPage = () => {
 
 const LoginForm = () => {
   return (
-    <>
+    <div className = "flex-1">
       <input type="text" placeholder="SVV NET ID*" className="w-full p-2 border mb-2" />
       <input type="password" placeholder="Password*" className="w-full p-2 border mb-2" />
       <div className="flex justify-between text-sm mb-4">
@@ -68,23 +68,22 @@ const LoginForm = () => {
       </div>
       <button className="w-full bg-[#B7202E] text-white py-2 rounded cursor-pointer">LOGIN</button>
       <p className="text-center text-sm mt-4">
-        First Time? <a href="#" className="text-[#B7202E]">Sign Up</a>
+        First Time? <Link to ="/register" className="text-[#B7202E]">Sign Up</Link>
       </p>
-    </>
+    </div>
   );
 };
 
 /* Mail Component */
 const MailComponent = () => {
   return (
-    <div className="p-4 rounded-lg w-full flex flex-col items-center">
+    <div className="p-4 rounded-lg w-full flex flex-col items-center flex-1">
       <button className="w-[60%] bg-[#58595B1C] text-white py-2 rounded-md cursor-pointer flex flex-row justify-around">
         <img src={google_logo} className="w-7 h-7"></img><h2 className="flex items-center justify-center text-[#B7202E] font-semibold">Login with Somaiya Mail ID </h2>
       </button>
       <p className="text-center text-sm mt-4">
-        First Time? <a href="#" className="text-[#B7202E]">Sign Up</a>
+        First Time? <Link to ="/register" className="text-[#B7202E]">Sign Up</Link>
       </p>
-
     </div>
   );
 };
