@@ -61,10 +61,10 @@ const Overview = ({setActiveTab}) => {
       </div>
 
       <div className="flex justify-end mt-6 space-x-4">
-        <button className="bg-gray-500 text-white py-2 px-4 rounded cursor-not-allowed">Previous</button>
+        <button className="bg-gray-500 text-white py-2 px-4 rounded cursor-not-allowed">&lt; Previous</button>
         <button className={`py-2 px-4 rounded text-white 
           ${isChecked? "bg-[#B7202E] hover:bg-[#801721] cursor-pointer" : "bg-gray-400 cursor-not-allowed"}`} 
-          onClick={() => { if(isChecked){ setActiveTab("personalDetails") } }} disabled={!isChecked}>Proceed</button>
+          onClick={() => { if(isChecked){ setActiveTab("personalDetails") } }} disabled={!isChecked}>Proceed &gt;</button>
       </div>
     </div>
   );
