@@ -12,8 +12,8 @@ const CourseDetails = ({setActiveTab}) => {
     return (
     <div className="p-4 bg-white shadow-md ">
         <h2 className="text-3xl font-medium text-[#B7202E] mb-4 border-b pb-2">Course Details</h2>
-        <h3 className="font-semibold mt-4 block font-semibold text-[#004466]">Doctorate Program Details</h3>
-        <div className="grid grid-rows-3 gap-4 mt-2">
+        <h3 className="font-semibold mt-4 block font-semibold text-[#004466] mb-4">Doctorate Program Details</h3>
+        <div className="grid grid-cols-1 gap-2 mt-2 mb-2">
             <input type="text" placeholder="Department of Research" className="p-2 bg-[#FFEBE9FE] rounded text-center" />
             <input type="text" placeholder="Institute" className="p-2 bg-[#FFEBE9FE] rounded text-center" />
             <select className="p-2 bg-[#FFEBE9FE] rounded text-center">

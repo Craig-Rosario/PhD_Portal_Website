@@ -1,7 +1,7 @@
 import { useState } from "react";
 import FileInput from "./File_input"; // adjust path as needed
 
-export default function Document() {
+const Document = ({setActiveTab}) => {
   const [files, setFiles] = useState({
     undergradMarksheet: null,
     postgradMarksheet: null,
@@ -99,13 +99,12 @@ export default function Document() {
         label="No Objection Certificate (NOC)"
         onFileChange={handleFileChange}
       />
-
-      <button
-        type="submit"
-        className=" bg-[#B7202E] text-white py-2 px-4 rounded cursor-pointer hover:bg-[#801721] mt-10"
-      >
-        Submit
-      </button>
+      <div className="flex items-center space-x-4 mb-4 mt-10 justify-center">
+      <button className="bg-[#006699] text-white py-2 px-4 rounded cursor-pointer hover:bg-[#004e75]" onClick={() => setActiveTab("courseDetails")}>&lt; Previous</button>
+      <button type="submit" className=" bg-[#B7202E] text-white py-2 px-4 rounded cursor-pointer hover:bg-[#801721]"> Submit &gt;</button>
+      </div>
     </form>
   );
 }
+
+export default Document;
