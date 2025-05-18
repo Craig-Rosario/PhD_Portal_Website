@@ -13,7 +13,7 @@ function FileInput({ label, id, onFileSelect }) {
     <div className="flex items-center space-x-4 mb-4">
       <label
         htmlFor={id}
-        className="cursor-pointer bg-[#FFEBE9] hover:bg-[#FFD4D0] text-black py-2 px-4 rounded-lg shadow transition duration-300 w-80 text-center"
+        className="cursor-pointer bg-[#FFEBE9] hover:bg-[#FFD4D0] active:bg-[#FABEB9] text-black py-2 px-4 rounded-lg shadow transition duration-300 w-80 text-center"
       >
         {label}
       </label>
