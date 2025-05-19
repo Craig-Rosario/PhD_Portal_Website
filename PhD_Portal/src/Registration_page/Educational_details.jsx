@@ -306,7 +306,6 @@ const EducationalDetails = ({setActiveTab}) => {
           )}
         </div>
       </div>
-    //Buttons
     <div className="flex justify-end mt-10 space-x-4">
       <button className="bg-[#006699] text-white py-2 px-4 rounded cursor-pointer hover:bg-[#004e75]" onClick={() => setActiveTab("personalDetails")}>&lt; Previous</button>
       <button className="bg-[#B7202E] text-white py-2 px-4 rounded cursor-pointer hover:bg-[#801721]" onClick={() => setActiveTab("courseDetails")}>Proceed	&gt;</button>
