@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateField } from "../redux/personalDetailsSlice";
+import { updateField } from "./personalDetailsSlice";
 
 const PersonalDetails = ({ setActiveTab }) => {
   const dispatch = useDispatch();
