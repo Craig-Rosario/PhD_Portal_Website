@@ -8,7 +8,7 @@ import {
   deletePG,
   addEmployment,
   deleteEmployment,
-} from "../redux/educationDetailsSlice";
+} from "./educationDetailsSlice";
 
 const EducationalDetails = ({setActiveTab}) => {
   const dispatch = useDispatch();
