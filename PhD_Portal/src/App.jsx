@@ -1,11 +1,12 @@
-import {React, useState} from 'react'
+import {useState} from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import './App.css'
-import LandingPage from './Landing_page/Landing_page.jsx' 
-import LoginPage from "./Login_page/Login_page.jsx";
+import LandingPage from './pages/landing-page/LandingPage.jsx' 
+import LoginPage from "./pages/login-page/LoginPage.jsx";
 import RegistrationPage from "./Registration_page/Registration_page.jsx";
-import StudentDashboard from './Portal/Dashboard/StudentDashboard.jsx';
-import StudentLayout from './Portal/StudentLayout.jsx';
+import StudentDashboard from './pages/dashboard/StudentDashboard.jsx';
+import StudentLayout from './layout/StudentLayout.jsx';
+import AllCourses from './pages/my-courses/AllCourses.jsx';
 
 const App = () => {
   const [showLanding, setShowLanding] = useState(true);
@@ -23,8 +24,10 @@ const App = () => {
             </>}
           />
           <Route path="/register" element={<RegistrationPage />} />
+          
           <Route path="/student" element={<StudentLayout />}>
             <Route path="dashboard" element={<StudentDashboard />} />
+            <Route path='courses' element={<AllCourses/>}/>
           </Route>
         </Routes>
       </div>
