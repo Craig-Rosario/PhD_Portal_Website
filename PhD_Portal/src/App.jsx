@@ -4,6 +4,8 @@ import './App.css'
 import LandingPage from './Landing_page/Landing_page.jsx' 
 import LoginPage from "./Login_page/Login_page.jsx";
 import RegistrationPage from "./Registration_page/Registration_page.jsx";
+import StudentDashboard from './Portal/Dashboard/StudentDashboard.jsx';
+import StudentLayout from './Portal/StudentLayout.jsx';
 
 const App = () => {
   const [showLanding, setShowLanding] = useState(true);
@@ -18,10 +20,12 @@ const App = () => {
             <>
               {showLanding && <LandingPage onContinue={() => setShowLanding(false)} />}
               {!showLanding && <LoginPage />}
-            </>} 
+            </>}
           />
           <Route path="/register" element={<RegistrationPage />} />
-
+          <Route path="/student" element={<StudentLayout />}>
+            <Route path="dashboard" element={<StudentDashboard />} />
+          </Route>
         </Routes>
       </div>
     </Router>
