@@ -28,6 +28,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { SidebarTrigger } from "../../ui/sidebar";
 
 // Sample data
 const data = {
@@ -76,6 +77,7 @@ export default function StudentSidebar(props) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
+      <SidebarTrigger />
       </SidebarContent>
       <SidebarFooter>
       </SidebarFooter>

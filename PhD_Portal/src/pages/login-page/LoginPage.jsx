@@ -1,14 +1,14 @@
 import {React, useState} from "react";
 import { Link } from 'react-router-dom';
-import lg2 from "../assets/Lg_2.jpg";
-import lg1 from "../assets/Lg_1.jpg"; 
-import lg3 from "../assets/Lg_3.jpg";
-import somaiya_logo from "../assets/favicon.svg";
-import google_logo from "../assets/icon_google.svg";
+import lg2 from "../../assets/Lg_2.jpg";
+import lg1 from "../../assets/Lg_1.jpg"; 
+import lg3 from "../../assets/Lg_3.jpg";
+import somaiya_logo from "../../assets/favicon.svg";
+import google_logo from "../../assets/icon_google.svg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./Login_page.css";
+import "./LoginPage.css";
 
 const images = [lg1,lg2,lg3];
 

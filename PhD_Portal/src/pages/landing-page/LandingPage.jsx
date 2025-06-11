@@ -3,13 +3,13 @@ import Slider from "react-slick";
 import { motion } from "framer-motion";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./Landing_page.css";
-import somaiya_logo from "../assets/favicon.svg";
-import lp1 from "../assets/Lp_1.jpg"; 
-import lp2 from "../assets/Lp_2.jpg";
-import lp3 from "../assets/Lp_3.jpg";
-import Somaiya_Trust from "../assets/Somaiya_Trust.png";
-import KJSSE from "../assets/SVU_KJSCE.png";
+import "./LandingPage.css";
+import somaiya_logo from "../../assets/favicon.svg";
+import lp1 from "../../assets/Lp_1.jpg"; 
+import lp2 from "../../assets/Lp_2.jpg";
+import lp3 from "../../assets/Lp_3.jpg";
+import Somaiya_Trust from "../../assets/Somaiya_Trust.png";
+import KJSSE from "../../assets/SVU_KJSCE.png";
 
 const images = [lp1,lp2,lp3];
 

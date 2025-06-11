@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import personalDetailsReducer from '../Registration_page/Personal_details/personalDetailsSlice';
 import educationDetailsReducer from '../Registration_page/Educational_details/educationDetailsSlice';
-import studentDashboardReducer from '../Portal/Dashboard/studentDashboardSlice';
+import studentDashboardReducer from '../pages/dashboard/studentDashboardSlice'
 
 export const store = configureStore({
   reducer: {

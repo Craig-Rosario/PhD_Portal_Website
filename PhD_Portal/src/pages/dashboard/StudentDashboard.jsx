@@ -1,4 +1,4 @@
-import StudentSidebar from "@/Portal/Student_sidebar/StudentSidebar";
+import StudentSidebar from "../../components/custom/sidebar/StudentSidebar";
 import { useSelector } from "react-redux";
 
 export default function StudentDashboard() {
