@@ -21,7 +21,7 @@ export function NavUser({ user }) {
   return (
     <SidebarMenu>
       {state == "collapsed" ? (
-        <SidebarMenuItem >
+        <SidebarMenuItem className="mt-20">
           <SidebarMenuButton className="justify-center">
             <Avatar className="h-8 w-8 rounded-lg">
               <AvatarImage src={user.avatar} />
@@ -32,7 +32,7 @@ export function NavUser({ user }) {
           </SidebarMenuButton>
         </SidebarMenuItem>
       ) : (
-        <SidebarMenuItem className="relative flex flex-col items-center justify-center rounded-xl bg-muted p-4 gap-2">
+        <SidebarMenuItem className="mt-20 relative flex flex-col items-center justify-center rounded-xl p-4 gap-2">
           <button className="absolute right-3 top-3 text-muted-foreground hover:text-foreground">
             <Pencil className="h-4 w-4" />
           </button>

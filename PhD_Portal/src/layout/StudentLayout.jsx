@@ -23,8 +23,8 @@ export default function StudentLayout() {
         {/* Body Wrapper (includes sidebar and main content) */}
         <div className="flex flex-1 pt-16">
           {/* Sidebar (starts *below* the header) */}
-          <StudentSidebar />
           <HeaderLayout/>
+          <StudentSidebar />
           {/* Main Content */}
           <main className="flex-1 relative overflow-y-auto">
             
