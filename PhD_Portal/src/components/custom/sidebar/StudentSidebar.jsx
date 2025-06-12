@@ -41,29 +41,29 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "student/dashboard",
+      url: "/student/dashboard",
       icon: House ,
       isActive: true,
     },
     {
       title: "Courses",
-      url: "student/courses",
+      url: "/student/courses",
       icon: BrainCog,
     },
     {
       title: "Announcements",
-      url: "student/announcements",
+      url: "/student/announcements",
       icon: Megaphone,
     },
     {
       title: "Resources",
-      url: "student/resources",
+      url: "/student/resources",
       icon: BookText,
   
     },
     {
       title: "Settings",
-      url: "student/settings",
+      url: "/student/settings",
       icon: Settings,
     },
   ]
@@ -77,10 +77,8 @@ export default function StudentSidebar(props) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-      <SidebarTrigger />
+      <SidebarTrigger className="absolute right-2 bottom-2" />
       </SidebarContent>
-      <SidebarFooter>
-      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   );
