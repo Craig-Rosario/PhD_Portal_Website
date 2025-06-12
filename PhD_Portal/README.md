@@ -1,8 +1,13 @@
-# React + Vite
+# PhD Portal – K. J. Somaiya School of Engineering
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## For Contributors
 
-Currently, two official plugins are available:
+Thank you for your interest in contributing to the PhD Portal project!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Getting Started
+
+After cloning the repository and navigating to the project directory, run the following commands to set up the development environment:
+
+```bash
+npm install
+npm run dev
