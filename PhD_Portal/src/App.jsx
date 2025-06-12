@@ -7,6 +7,8 @@ import RegistrationPage from "./Registration_page/Registration_page.jsx";
 import StudentDashboard from './pages/dashboard/StudentDashboard.jsx';
 import StudentLayout from './layout/StudentLayout.jsx';
 import AllCourses from './pages/my-courses/AllCourses.jsx';
+import AllCourseDetails from './pages/my-courses/AllCourseDetails.jsx';
+import LearningGuides from './pages/my-courses/LearningGuides.jsx';
 
 const App = () => {
   const [showLanding, setShowLanding] = useState(true);
@@ -28,6 +30,8 @@ const App = () => {
           <Route path="/student" element={<StudentLayout />}>
             <Route path="dashboard" element={<StudentDashboard />} />
             <Route path='courses' element={<AllCourses/>}/>
+            <Route path='courses/details' element={<AllCourseDetails/>}/>
+            <Route path='courses/details/learning-guides' element={<LearningGuides/>}/>
           </Route>
         </Routes>
       </div>
