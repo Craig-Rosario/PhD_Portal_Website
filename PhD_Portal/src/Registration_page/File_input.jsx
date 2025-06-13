@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-function FileInput({ label, id, onFileSelect }) {
+function FileInput({ label, id, onFileChange }) {
   const [fileName, setFileName] = useState("No file chosen");
 
   const handleChange = (e) => {
     const file = e.target.files?.[0];
     setFileName(file ? file.name : "No file chosen");
-    if (onFileSelect) onFileSelect(id, file); // optional callback
+    if (onFileChange) onFileChange(id, file);
   };
 
   return (
@@ -23,6 +23,7 @@ function FileInput({ label, id, onFileSelect }) {
         type="file"
         className="hidden"
         onChange={handleChange}
+        accept=".pdf,.jpg,.jpeg,.png"
       />
 
       <span className="text-gray-600 italic">{fileName}</span>

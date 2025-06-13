@@ -4,7 +4,7 @@ import KJSSE from "../assets/SVU_KJSCE.png";
 import Overview from "./Overview.jsx";
 import PersonalDetails from "./Personal_details/Personal_details.jsx";
 import EducationalDetails from "./Educational_details/Educational_details.jsx";
-import CourseDetails from "./Course_details";
+import CourseDetails from "./Course_details/Course_details.jsx";
 import UploadDocuments from "./Documents";
 import "./Registration_page.css";
 // import UploadDocuments from "./UploadDocuments";
