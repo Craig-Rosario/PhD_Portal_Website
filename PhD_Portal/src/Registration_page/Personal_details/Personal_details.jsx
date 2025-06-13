@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateField } from "./personalDetailsSlice";
 
@@ -6,9 +6,48 @@ const PersonalDetails = ({ setActiveTab }) => {
   const dispatch = useDispatch();
   const formData = useSelector((state) => state.personalDetails);
 
+  const [sameAddress, setSameAddress] = useState(false);
+
   const handleChange = (field) => (e) => {
     dispatch(updateField({ field, value: e.target.value }));
   };
+
+  const handleCheckboxChange = (e) => {
+    const checked = e.target.checked;
+    setSameAddress(checked);
+
+    if (checked) {
+      dispatch(updateField({ field: "permanentAddressLine1", value: formData.addressLine1 }));
+      dispatch(updateField({ field: "permanentAddressLine2", value: formData.addressLine2 }));
+      dispatch(updateField({ field: "permanentDistrict", value: formData.district }));
+      dispatch(updateField({ field: "permanentState", value: formData.state }));
+      dispatch(updateField({ field: "permanentPinCode", value: formData.pinCode }));
+    } else {
+      dispatch(updateField({ field: "permanentAddressLine1", value: "" }));
+      dispatch(updateField({ field: "permanentAddressLine2", value: "" }));
+      dispatch(updateField({ field: "permanentDistrict", value: "" }));
+      dispatch(updateField({ field: "permanentState", value: "" }));
+      dispatch(updateField({ field: "permanentPinCode", value: "" }));
+    }
+  };
+
+  useEffect(() => {
+    if (sameAddress) {
+      dispatch(updateField({ field: "permanentAddressLine1", value: formData.addressLine1 }));
+      dispatch(updateField({ field: "permanentAddressLine2", value: formData.addressLine2 }));
+      dispatch(updateField({ field: "permanentDistrict", value: formData.district }));
+      dispatch(updateField({ field: "permanentState", value: formData.state }));
+      dispatch(updateField({ field: "permanentPinCode", value: formData.pinCode }));
+    }
+  }, [
+    formData.addressLine1,
+    formData.addressLine2,
+    formData.district,
+    formData.state,
+    formData.pinCode,
+    sameAddress,
+    dispatch,
+  ]);
 
   const states = [
     "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh",
@@ -55,19 +94,20 @@ const PersonalDetails = ({ setActiveTab }) => {
       {/* Permanent Address */}
       <h3 className="font-semibold text-[#004466] mt-6">Permanent Address</h3>
       <div className="mt-3">
-        <input type="checkbox" className="mr-2" />
+        <input type="checkbox" className="mr-2" checked={sameAddress} onChange={handleCheckboxChange} />
         <label className="text-gray-700">Permanent Address Same as Residential Address</label>
       </div>
       <div className="grid grid-cols-1 gap-2 mt-2">
-        <input type="text" placeholder="Address Line 1" className="p-2 bg-[#FFEBE9FE] rounded text-center"  />
-        <input type="text" placeholder="Address Line 2" className="p-2 bg-[#FFEBE9FE] rounded text-center"  />
+        <input type="text" placeholder="Address Line 1" className="p-2 bg-[#FFEBE9FE] rounded text-center" value={formData.permanentAddressLine1} onChange={handleChange("permanentAddressLine1")} readOnly={sameAddress} />
+        <input type="text" placeholder="Address Line 2" className="p-2 bg-[#FFEBE9FE] rounded text-center" value={formData.permanentAddressLine2} onChange={handleChange("permanentAddressLine2")} readOnly={sameAddress} />
       </div>
       <div className="grid grid-cols-3 gap-4 mt-2">
-        <input type="text" placeholder="District" className="p-2 bg-[#FFEBE9FE] rounded text-center"  />
-        <select className="p-2 bg-[#FFEBE9FE] rounded text-center" >
-          <option>Select State</option>
+        <input type="text" placeholder="District" className="p-2 bg-[#FFEBE9FE] rounded text-center" value={formData.permanentDistrict} onChange={handleChange("permanentDistrict")} readOnly={sameAddress} />
+        <select className="p-2 bg-[#FFEBE9FE] rounded text-center" value={formData.permanentState} onChange={handleChange("permanentState")} disabled={sameAddress}>
+          <option value="" disabled hidden>Select State</option>
+          {states.map((x, y) => <option key={y}>{x}</option>)}
         </select>
-        <input type="number" placeholder="Pin Code" className="p-2 bg-[#FFEBE9FE] rounded text-center"  />
+        <input type="number" placeholder="Pin Code" className="p-2 bg-[#FFEBE9FE] rounded text-center" value={formData.permanentPinCode} onChange={handleChange("permanentPinCode")} readOnly={sameAddress} />
       </div>
 
       {/* Other Info */}
@@ -78,6 +118,7 @@ const PersonalDetails = ({ setActiveTab }) => {
             <option disabled hidden>Select</option>
             <option>Male</option>
             <option>Female</option>
+            <option>Other</option>
           </select>
         </div>
         <div>
