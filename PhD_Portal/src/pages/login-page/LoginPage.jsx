@@ -58,8 +58,8 @@ const LoginPage = () => {
 const LoginForm = () => {
   return (
     <div className = "flex-1">
-      <input type="text" placeholder="SVV NET ID*" className="w-full p-2 border mb-2" />
-      <input type="password" placeholder="Password*" className="w-full p-2 border mb-2" />
+      <input type="text" placeholder="SVV NET ID*" className="w-full p-2 border rounded-md mb-2" />
+      <input type="password" placeholder="Password*" className="w-full p-2 border rounded-md mb-2" />
       <div className="flex justify-between text-sm mb-4">
       <label className="flex items-center">
         <input type="checkbox" className="mr-2 cursor-pointer" /> Remember me

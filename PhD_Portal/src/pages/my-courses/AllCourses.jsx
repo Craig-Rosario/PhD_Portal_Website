@@ -15,7 +15,7 @@ const AllCourses = () => {
 
   return (
     <div className="p-8 space-y-8 bg-gray-50 min-h-screen">
-      <h2 className="text-[24px] font-bold text-black border-b border-red-600 pb-3">
+      <h2 className="text-[24px] font-bold text-black border-b border-[#B7202E] pb-3">
         My Courses
       </h2>
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDispatch, useStore, useSelector } from 'react-redux';
 import FileInput from "./File_input"; // adjust path as needed
 
 const Document = ({setActiveTab}) => {
@@ -14,6 +15,11 @@ const Document = ({setActiveTab}) => {
     bonafideCertificate: null,
     nocCertificate: null,
   });
+  
+  const personalDetails = useSelector((state) => state.personalDetails);
+  const undergradDegrees = useSelector((state) => state.educationDetails.undergradDegrees);
+  const postgradDegrees = useSelector((state) => state.educationDetails.postgradDegrees);
+  const employmentRecords = useSelector((state) => state.educationDetails.employmentRecords);
 
   const handleFileChange = (field, file) => {
     setFiles((prev) => ({
@@ -24,6 +30,25 @@ const Document = ({setActiveTab}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          personalDetails,
+          academicDetails,
+          employmentDetails,
+        }),
+      });
+
+      if (!response.ok) throw new Error("Registration failed");
+    } catch (err) {
+      console.error("Error submitting details:", err);
+      alert("Failed to submit details. Try again.");
+      return;
+    }
 
     const formData = new FormData();
     Object.entries(files).forEach(([key, file]) => {
@@ -43,6 +68,10 @@ const Document = ({setActiveTab}) => {
     }
   };
 
+  console.log("Personal Details:", personalDetails);
+  console.log("Undergraduate Degrees:", undergradDegrees);
+  console.log("Postgraduate Degrees:", postgradDegrees);
+  console.log("Employment Records:", employmentRecords);
   return (
     <form
       onSubmit={handleSubmit}
