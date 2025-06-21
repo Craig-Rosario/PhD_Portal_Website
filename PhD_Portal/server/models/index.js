@@ -1,20 +1,17 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+import Sequelize from 'sequelize';
+import sequelize from '../config/db.js'; // your db connection
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+// Import models
+import PersonalDetails from './personalDetails.js';
+import AcademicQualification from './AcademicQualifications.js';
+import EmploymentRecord from './EmploymentRecords.js';
 
-// Middleware
-app.use(cors());
-app.use(express.json());
 
-// Test Route
-app.get('/api/hello', (req, res) => {
-  res.json({ message: 'Hello from Express backend!' });
-});
-
-// Start Server
-app.listen(PORT, () => {
-  console.log(`Backend running on http://localhost:${PORT}`);
-});
+// Export all models and sequelize instance
+export  {
+  sequelize,
+  Sequelize,
+  PersonalDetails,
+  AcademicQualification,
+  EmploymentRecord,
+};
