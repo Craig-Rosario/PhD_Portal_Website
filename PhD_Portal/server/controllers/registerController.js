@@ -5,6 +5,7 @@ export const registerUser = async (req, res) => {
     const { personalDetails, academicQualifications, employmentRecords } = req.body;
 
     const personal = await PersonalDetails.create(personalDetails);
+    console.log('Received req.body:', req.body);
 
     const academic = await AcademicQualification.bulkCreate(
       academicQualifications.map(item => ({ ...item, email: personalDetails.email }))

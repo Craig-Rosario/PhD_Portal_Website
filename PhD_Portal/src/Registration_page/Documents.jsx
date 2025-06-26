@@ -19,7 +19,21 @@ const Document = ({setActiveTab}) => {
   const personalDetails = useSelector((state) => state.personalDetails);
   const undergradDegrees = useSelector((state) => state.educationDetails.undergradDegrees);
   const postgradDegrees = useSelector((state) => state.educationDetails.postgradDegrees);
-  const employmentRecords = useSelector((state) => state.educationDetails.employmentRecords);
+  const employmentDetails = useSelector((state) => state.educationDetails.employmentRecords);
+
+  const academicDetails = {
+    undergradDegrees: undergradDegrees,
+    postgradDegrees: postgradDegrees,
+  }
+
+  var AcademicU = academicDetails.undergradDegrees;
+  AcademicU.map((degree) => ({...degree, type: "UG"}));
+
+  var AcademicP = academicDetails.postgradDegrees;
+  AcademicP.map((degree) => ({...degree, type: "PG"}));
+
+  console.log("Academic U:", AcademicU);
+  console.log("Academic P:", AcademicP);
 
   const handleFileChange = (field, file) => {
     setFiles((prev) => ({
@@ -38,7 +52,7 @@ const Document = ({setActiveTab}) => {
         },
         body: JSON.stringify({
           personalDetails,
-          academicDetails,
+          AcademicQualification: academicDetails.undergradDegrees.concat(academicDetails.postgradDegrees) ,
           employmentDetails,
         }),
       });
@@ -69,9 +83,9 @@ const Document = ({setActiveTab}) => {
   };
 
   console.log("Personal Details:", personalDetails);
-  console.log("Undergraduate Degrees:", undergradDegrees);
+  console.log("ACADEMIC DETAILS:", academicDetails);
   console.log("Postgraduate Degrees:", postgradDegrees);
-  console.log("Employment Records:", employmentRecords);
+  console.log("Employment Records:", employmentDetails);
   return (
     <form
       onSubmit={handleSubmit}
