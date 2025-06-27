@@ -14,7 +14,7 @@ export default function StudentLayout() {
         <StudentSidebar />
         <div className="flex flex-col flex-1 w-full">
           <HeaderLayout />
-          <main className="flex-1 p-10 bg-gray-50 pt-16">
+          <main className="flex-1 p-10 bg-gray-50 pt-16 bg-[url(../../assets/background.png)] bg-contain bg-repeat-y">
             <Outlet/>
           </main>
         </div>

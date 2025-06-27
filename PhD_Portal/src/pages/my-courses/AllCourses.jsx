@@ -14,7 +14,7 @@ const AllCourses = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="p-8 space-y-8 bg-gray-50 min-h-screen">
+    <div className="p-8 space-y-8 bg-gray-50 min-h-screen rounded-lg mt-4">
       <h2 className="text-[24px] font-bold text-black border-b border-[#B7202E] pb-3">
         My Courses
       </h2>
@@ -23,7 +23,7 @@ const AllCourses = () => {
         {courses.map((course) => (
           <Card
             key={course.id}
-            className="cursor-pointer border border-gray-200 bg-white rounded-lg shadow-sm hover:shadow-lg transition-transform duration-200 ease-in-out transform hover:scale-[1.02]"
+            className="cursor-pointer pt-0 border border-gray-200 bg-white rounded-lg shadow-sm hover:shadow-lg transition-transform duration-200 ease-in-out transform hover:scale-[1.02]"
             onClick={() => navigate('/student/courses/details')}
           >
             <img

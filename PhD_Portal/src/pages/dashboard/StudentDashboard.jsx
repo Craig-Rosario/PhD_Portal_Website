@@ -69,19 +69,19 @@ const sampleAssignments = [
 
 
   return (
-    <div className="flex">
+    <div className="flex ">
       <main className="flex-1 p-6 space-y-10 ">
         {/* Header */}
         <div className="flex justify-between items-center">
-          <h1 className="text-xl font-bold">
-            Hello, <span className="text-red-500">{studentInfo?.name || "Student"}</span>!
+          <h1 className="text-3xl font-bold">
+            Hello, <span>{studentInfo?.name || "Student"}</span> !
           </h1>
         </div>
 
-        <div className="grid grid-cols-12 gap-4 p-4 min-h-screen bg-gray-50">
+        <div className="grid grid-cols-12 gap-4 p-4 min-h-screen">
         {/* <!-- My Courses --> */}
         <div className="col-span-12 lg:col-span-8 space-y-2">
-          <div className="bg-white rounded-lg shadow p-4">
+          <div className="bg-white/60 rounded-lg shadow p-4">
             <h2 className="text-lg font-semibold mb-2">My Courses</h2>
             <div>
               <CourseCarousel courses={sampleCourses} />
@@ -89,7 +89,7 @@ const sampleAssignments = [
           </div>
 
           {/* <!-- Assignments --> */}
-          <div className="bg-white rounded-lg shadow p-4">
+          <div className="bg-white/60 rounded-lg shadow p-4">
             <h2 className="text-lg font-semibold mb-2">Assignments</h2>
             <div>
               <AssignmentCarousel assignments={sampleAssignments} />
@@ -97,9 +97,9 @@ const sampleAssignments = [
           </div>
 
           {/* <!-- Progress --> */}
-          <div className="bg-white rounded-lg shadow p-4">
+          <div className="bg-white/60 rounded-lg shadow p-4">
             <h2 className="text-lg font-semibold mb-2">Progress</h2>
-            <div className="bg-gray-100 p-3 rounded shadow ">
+            <div className=" p-3 rounded shadow ">
               {/* <!-- Chart Placeholder --> */}
               <ProgressChart />
             </div>
@@ -108,7 +108,7 @@ const sampleAssignments = [
 
         {/* <!-- Announcements --> */}
         <div className="col-span-12 lg:col-span-4 grid grid-rows-2 gap-4">
-          <div className="bg-white rounded-lg shadow p-4">
+          <div className="bg-white/60 rounded-lg shadow p-4">
             <h2 className="text-lg font-semibold mb-2">Announcements</h2>
             <ul className="list-disc list-inside space-y-1 text-blue-600">
               <li>Sem 1 Orientation</li>
@@ -119,7 +119,7 @@ const sampleAssignments = [
             </ul>
           </div>
            {/* <!-- Resources --> */}
-          <div className="bg-white rounded-lg shadow p-4">
+          <div className="bg-white/60 rounded-lg shadow p-4">
             <h2 className="text-lg font-semibold mb-2">Resources</h2>
             <ul className="list-disc list-inside space-y-1">
               <li>Visit E-Library</li>
