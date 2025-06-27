@@ -71,13 +71,13 @@ const data = {
 
 export default function StudentSidebar(props) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" {...props} className="bg-black">
       <SidebarHeader>
         <NavUser user={data.user} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-      <SidebarTrigger className="absolute right-2 bottom-2" />
+      <SidebarTrigger className="absolute right-3 top-16" />
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
