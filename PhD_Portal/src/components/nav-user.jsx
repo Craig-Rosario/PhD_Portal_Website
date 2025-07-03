@@ -33,7 +33,7 @@ export function NavUser({ user }) {
         </SidebarMenuItem>
       ) : (
         <SidebarMenuItem className="mt-20 relative flex flex-col items-center justify-center rounded-xl p-4 gap-2">
-          <button className="absolute right-3 top-3 text-muted-foreground hover:text-foreground">
+          <button className="absolute right-3 top-3 text-white hover:text-foreground">
             <Pencil className="h-4 w-4" />
           </button>
 
@@ -45,9 +45,9 @@ export function NavUser({ user }) {
           </Avatar>
 
           <div className="text-center">
-            <p className="text-sm font-semibold">{user.name}</p>
-            <p className="text-xs text-muted-foreground">{user.institution}</p>
-            <p className="text-xs font-medium mt-1">
+            <p className="text-sm font-semibold text-white">{user.name}</p>
+            <p className="text-xs text-white">{user.institution}</p>
+            <p className="text-xs font-medium mt-1 text-white">
               Enrollment ID : {user.enrollmentId}
             </p>
           </div>
