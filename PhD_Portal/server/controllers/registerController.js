@@ -6,14 +6,10 @@ export const registerUser = async (req, res) => {
 
     const personal = await PersonalDetails.create(personalDetails);
     console.log('Received req.body:', req.body);
+    console.log(Object.keys(AcademicQualification));
+    const academic = await AcademicQualification.bulkCreate(academicQualifications);
 
-    const academic = await AcademicQualification.bulkCreate(
-      academicQualifications.map(item => ({ ...item, email: personalDetails.email }))
-    );
-
-    const employment = await EmploymentRecord.bulkCreate(
-      employmentRecords.map(item => ({ ...item, email: personalDetails.email }))
-    );
+    const employment = await EmploymentRecord.bulkCreate(employmentRecords);
 
     res.status(201).json({ personal, academic, employment });
   } catch (err) {
