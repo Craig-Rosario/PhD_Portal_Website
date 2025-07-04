@@ -53,7 +53,7 @@ const Document = ({setActiveTab}) => {
         },
         body: JSON.stringify({
           personalDetails,
-          AcademicQualification: aq ,
+          academicQualifications: aq,
           employmentDetails: empDetails,
         }),
       });

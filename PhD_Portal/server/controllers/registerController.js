@@ -2,14 +2,14 @@ import { PersonalDetails, AcademicQualification, EmploymentRecord } from '../mod
 
 export const registerUser = async (req, res) => {
   try {
-    const { personalDetails, academicQualifications, employmentRecords } = req.body;
+    const { personalDetails, academicQualifications, employmentDetails } = req.body;
 
     const personal = await PersonalDetails.create(personalDetails);
     console.log('Received req.body:', req.body);
-    console.log(Object.keys(AcademicQualification));
+    console.log(Object.keys(academicQualifications).length, 'academic qualifications received');
     const academic = await AcademicQualification.bulkCreate(academicQualifications);
 
-    const employment = await EmploymentRecord.bulkCreate(employmentRecords);
+    const employment = await EmploymentRecord.bulkCreate(employmentDetails);
 
     res.status(201).json({ personal, academic, employment });
   } catch (err) {
