@@ -16,7 +16,7 @@ const AcademicQualification = define('AcademicQualification', {
     type: DataTypes.ENUM('UG', 'PG'),
     allowNull: false,
   },
-  degreeName: {
+  title: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -24,20 +24,17 @@ const AcademicQualification = define('AcademicQualification', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  institute: {
+    type:DataTypes.STRING,
+    allowNull: false,
+  },
   yearOfPassing: {
     type: DataTypes.INTEGER,
     allowNull: false,
     validate: {
       isInt: true,
-      min: 1900,
+      min: 1960,
       max: new Date().getFullYear(), // ensures logical year
-    },
-  },
-  grade: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      len: [1, 10], // optional: restricts overly long strings
     },
   },
 }, {

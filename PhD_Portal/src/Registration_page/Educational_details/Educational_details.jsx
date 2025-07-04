@@ -16,16 +16,16 @@ const EducationalDetails = ({setActiveTab}) => {
   const postgradDegrees = useSelector((state) => state.educationDetails.postgradDegrees);
   const employmentRecords = useSelector((state) => state.educationDetails.employmentRecords);
 
-  const [ugForm, setUgForm] = useState({ title: "", institute: "", university: "", year: "" });
-  const [pgForm, setPgForm] = useState({ title: "", institute: "", university: "", year: "" });
+  const [ugForm, setUgForm] = useState({ title: "", institute: "", university: "", yearOfPassing: "", type: "UG" });
+  const [pgForm, setPgForm] = useState({ title: "", institute: "", university: "", yearOfPassing: "", type: "PG" });
   const [empForm, setEmpForm] = useState({ designation: "", employer: "", startDate: "", endDate: "" });
 
   const tableRef = useRef(null);
 
   const addUndergradDegree = () => {
-    if (ugForm.title && ugForm.institute && ugForm.university && ugForm.year) {
+    if (ugForm.title && ugForm.institute && ugForm.university && ugForm.yearOfPassing && ugForm.type ) {
       dispatch(addUG(ugForm));
-      setUgForm({ title: "", institute: "", university: "", year: "" });
+      setUgForm({ title: "", institute: "", university: "", yearOfPassing: "", type: "UG" });
     }
   };
 
@@ -34,9 +34,9 @@ const EducationalDetails = ({setActiveTab}) => {
   };
 
   const addPostgradDegree = () => {
-    if (pgForm.title && pgForm.institute && pgForm.university && pgForm.year) {
+    if (pgForm.title && pgForm.institute && pgForm.university && pgForm.yearOfPassing) {
       dispatch(addPG(pgForm));
-      setPgForm({ title: "", institute: "", university: "", year: "" });
+      setPgForm({ title: "", institute: "", university: "", yearOfPassing: "", type: "PG" });
     }
   };
 
@@ -96,8 +96,8 @@ const EducationalDetails = ({setActiveTab}) => {
             <select
               type="text"
               placeholder="Year"
-              value={ugForm.year}
-              onChange={(e) => setUgForm({ ...ugForm, year: e.target.value })}
+              value={ugForm.yearOfPassing}
+              onChange={(e) => setUgForm({ ...ugForm, yearOfPassing: e.target.value })}
               className="input p-2 bg-[#FFEBE9FE] rounded text-center"
             >
              <option value="" disabled selected hidden>Year of Passing</option> {/* TODO: Need to change font color to match the other text input placeholders*/}
@@ -128,7 +128,7 @@ const EducationalDetails = ({setActiveTab}) => {
                     <td className="p-2 border">{degree.title}</td>
                     <td className="p-2 border">{degree.institute}</td>
                     <td className="p-2 border">{degree.university}</td>
-                    <td className="p-2 border">{degree.year}</td>
+                    <td className="p-2 border">{degree.yearOfPassing}</td>
                     <td className="p-2 border">
                       <div className="flex justify-center space-x-2">
                         <button onClick={() => deleteUndergrad(index)} className="text-red-600 p-1 p-l-3 p-r-3 flex space-x-1 cursor-pointer rounded hover:bg-red-100 active:bg-red-200">
@@ -174,8 +174,8 @@ const EducationalDetails = ({setActiveTab}) => {
             <select
               type="text"
               placeholder="Year"
-              value={pgForm.year}
-              onChange={(e) => setPgForm({ ...pgForm, year: e.target.value })}
+              value={pgForm.yearOfPassing}
+              onChange={(e) => setPgForm({ ...pgForm, yearOfPassing: e.target.value })}
               className="input p-2 bg-[#FFEBE9FE] rounded text-center"
             >
             <option value="" disabled selected hidden>Year of Passing</option> {/* TODO: Need to change font color to match the other text input placeholders*/}
@@ -206,7 +206,7 @@ const EducationalDetails = ({setActiveTab}) => {
                     <td className="p-2 border">{degree.title}</td>
                     <td className="p-2 border">{degree.institute}</td>
                     <td className="p-2 border">{degree.university}</td>
-                    <td className="p-2 border">{degree.year}</td>
+                    <td className="p-2 border">{degree.yearOfPassing}</td>
                     <td className="p-2 border">
                       <div className="flex justify-center space-x-2">
                         <button onClick={() => deletePostgrad(index)} className="text-red-600 p-1 p-l-3 p-r-3 flex space-x-1 cursor-pointer rounded hover:bg-red-100 active:bg-red-200">
