@@ -29,6 +29,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { SidebarTrigger } from "../../ui/sidebar";
+import { color } from "framer-motion";
 
 // Sample data
 const data = {
@@ -76,7 +77,7 @@ export default function StudentSidebar(props) {
         <NavUser user={data.user} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={data.navMain}/>
       <SidebarTrigger className="absolute right-2 bottom-2" />
       </SidebarContent>
       <SidebarRail />

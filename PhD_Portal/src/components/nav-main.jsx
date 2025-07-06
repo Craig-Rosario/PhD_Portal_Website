@@ -34,7 +34,7 @@ export function NavMain({ items }) {
                 >
                   <item.icon
                     className={`h-5 w-5 ${
-                      isActive ? "text-[#B7202E]" : "text-muted-foreground"
+                      isActive ? "text-[#B7202E]" : "text-white"
                     }`}
                   />
                   <span>{item.title}</span>

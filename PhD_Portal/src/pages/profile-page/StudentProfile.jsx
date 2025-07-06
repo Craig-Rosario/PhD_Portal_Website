@@ -1,126 +1,163 @@
+"use client"
+
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { User, Calendar, Phone, Mail, GraduationCap, BookOpen, FileText, Menu, X } from "lucide-react"
-// import { Briefcase } from "lucide-react";
+import { Briefcase } from "lucide-react";
 
 
 export default function StudentProfile() {
   const [activeSection, setActiveSection] = useState("personal")
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
-
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerOffset = 200; // Matches the visible height pushed by fixed + sticky content
-      const elementPosition = window.pageYOffset + element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-
-      setActiveSection(sectionId);
-      setIsMobileNavOpen(false);
-    }
-  };
-
-  
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["personal", "educational", "program"]
-      const scrollPosition = window.scrollY + 280
-
-      for (const section of sections) {
-        const element = document.getElementById(section)
-        if (element) {
-          const { offsetTop, offsetHeight } = element
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
-          }
-        }
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   return (
     <div className="min-h-screen bg-gray-50">
-    
+      <div className="flex">
+        <div className="flex-1 space-y-4 lg:pr-16">
+          {/* Header */}
+          <h1 className="text-2xl font-semibold text-gray-800 mb-2">
+            Student Profile
+          </h1>
+          {/* Fixed Student Profile Card (Full width) */}
+          <div className="top-4 z-10">
+            <Card className="w-full p-0 overflow-hidden border border-gray-300 border-b-4 border-b-gray-300 rounded-md shadow">
+              {/* Top red section */}
+              <div className="bg-[#B7202E] text-white p-6">
+                <div className="flex flex-col md:flex-row items-start md:items-center space-y-4 md:space-y-0 md:space-x-6">
+                  {/* Avatar overlapping both sections */}
+                  <Avatar className="w-24 h-24 border-4 border-white bg-white">
+                    <AvatarImage
+                      src="/placeholder.svg?height=96&width=96"
+                      alt="Profile"
+                    />
+                    <AvatarFallback className="bg-blue-500 text-white text-2xl">
+                      SV
+                    </AvatarFallback>
+                  </Avatar>
 
-      <div className="flex pt-20">
-        {/* Left Sidebar - Placeholder */}
-        <div className="hidden lg:block w-16 bg-[#B7202E] min-h-screen fixed left-0 top-20">
-          <div className="flex flex-col items-center py-4 space-y-4">
-            <div className="w-8 h-8 bg-white/20 rounded"></div>
-            <div className="w-8 h-8 bg-white/20 rounded"></div>
-            <div className="w-8 h-8 bg-white/20 rounded"></div>
-            <div className="w-8 h-8 bg-white/20 rounded"></div>
+                  <div className="flex-1">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-2">
+                      Mr. Random
+                    </h2>
+                    <p className="text-lg mb-1">
+                      K. J. Somaiya School Of Engineering
+                    </p>
+                    <p className="text-base mb-0">
+                      Second Year B.Tech Computer Engineering
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom white section (25%) */}
+              <div className="bg-white text-black px-6 py-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                  <div className="flex items-center space-x-2">
+                    <FileText className="w-4 h-4 text-black" />
+                    <span>1600</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Calendar className="w-4 h-4 text-black" />
+                    <span>24/06/2005</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Phone className="w-4 h-4 text-black" />
+                    <span>1234567890</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Mail className="w-4 h-4 text-black" />
+                    <span className="truncate">Random@somaiya.edu</span>
+                  </div>
+                </div>
+              </div>
+            </Card>            
           </div>
+
+          <div className="grid grid-cols-4">
+
+          <div className="col-span-3 space-y-6 ">
+            {activeSection === "personal" && <PersonalDetails/>}
+            {activeSection === "educational" && <EducationDetails />}
+            {activeSection === "program" && <ProgramDetails />}
+          </div>
+
+          <div className="h-64 col-span-1 bg-white shadow-lg border border-gray-300 border-b-4 border-b-gray-300 rounded-md overflow-auto">
+              <div className="p-4">
+                <nav className="space-y-2">
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start ${
+                      activeSection === "personal"
+                        ? "bg-gray-100 text-[#ED1C24]"
+                        : "text-black"
+                    } hover:bg-gray-100`}
+                    onClick={() => setActiveSection("personal")}
+                  >
+                    <User
+                      className={`w-4 h-4 mr-2 ${
+                        activeSection === "personal"
+                          ? "text-[#ED1C24]"
+                          : "text-black"
+                      }`}
+                    />
+                    Personal Details
+                  </Button>
+
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start ${
+                      activeSection === "educational"
+                        ? "bg-gray-100 text-[#ED1C24]"
+                        : "text-black"
+                    } hover:bg-gray-100`}
+                    onClick={() => setActiveSection("educational")}
+                  >
+                    <GraduationCap
+                      className={`w-4 h-4 mr-2 ${
+                        activeSection === "educational"
+                          ? "text-[#ED1C24]"
+                          : "text-black"
+                      }`}
+                    />
+                    Educational Details
+                  </Button>
+
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start ${
+                      activeSection === "program"
+                        ? "bg-gray-100 text-[#ED1C24]"
+                        : "text-black"
+                    } hover:bg-gray-100`}
+                    onClick={() => setActiveSection("program")}
+                  >
+                    <BookOpen
+                      className={`w-4 h-4 mr-2 ${
+                        activeSection === "program"
+                          ? "text-[#ED1C24]"
+                          : "text-black"
+                      }`}
+                    />
+                    Program Details
+                  </Button>
+                </nav>
+              </div>
+            </div>
+          </div>
+          
         </div>
 
-        <div className="flex-1 lg:ml-16  p-4 space-y-6 lg:pr-16">
-          
+        {/* Right Sidebar Navigation */}
+      </div>
+    </div>
+  );
+}
 
-            {/* Header */}
-            <h1 className="text-2xl font-semibold text-gray-800 mb-2">Student Profile</h1>
-
-            {/* Fixed Student Profile Card (Full width) */}
-            <div className="sticky top-4 z-10">
-              <Card className="w-full p-0 overflow-hidden rounded-lg shadow">
-                {/* Top red section */}
-                <div className="bg-[#B7202E] text-white p-6">
-                  <div className="flex flex-col md:flex-row items-start md:items-center space-y-4 md:space-y-0 md:space-x-6">
-                    {/* Avatar overlapping both sections */}
-                    <Avatar className="w-24 h-24 border-4 border-white bg-white">
-                      <AvatarImage src="/placeholder.svg?height=96&width=96" alt="Profile" />
-                      <AvatarFallback className="bg-blue-500 text-white text-2xl">SV</AvatarFallback>
-                    </Avatar>
-
-                    <div className="flex-1">
-                      <h2 className="text-2xl md:text-3xl font-bold mb-2">Mr. Random</h2>
-                      <p className="text-lg mb-1">K. J. Somaiya School Of Engineering</p>
-                      <p className="text-base mb-0">Second Year B.Tech Computer Engineering</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Bottom white section (25%) */}
-                <div className="bg-white text-black px-6 py-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                    <div className="flex items-center space-x-2">
-                      <FileText className="w-4 h-4 text-black" />
-                      <span>1600</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="w-4 h-4 text-black" />
-                      <span>24/06/2005</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Phone className="w-4 h-4 text-black" />
-                      <span>1234567890</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Mail className="w-4 h-4 text-black" />
-                      <span className="truncate">Random@somaiya.edu</span>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-
-            </div>
-          <div className="p-4 space-y-6 pr-0 lg:pr-64 ">
-
-
-            {/* Personal Details Section */}
-            <section id="personal">
-              <Card>
+const PersonalDetails = ()=>{
+  return(
+            <section id="personal" className="w-inherit pr-4">
+              <Card className="border border-gray-300 border-b-4 border-b-gray-300 rounded-md">
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <User className="w-5 h-5" />
@@ -195,10 +232,13 @@ export default function StudentProfile() {
                 </CardContent>
               </Card>
             </section>
+            );
+}
 
-            {/* Educational Details Section */}
-            <section id="educational">
-              <Card>
+const EducationDetails = () => {
+  return(
+            <section id="educational" className="w-inherit pr-4">
+              <Card className="border border-gray-300 border-b-4 border-b-gray-300 rounded-md">
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <GraduationCap className="w-5 h-5" />
@@ -271,16 +311,19 @@ export default function StudentProfile() {
                       </div>
                         </div>
                   </div>
-                 
+
                 </CardContent>
               </Card>
 
-              
-            </section>
 
-            {/* Program Details Section */}
-            <section id="program">
-              <Card>
+            </section>
+  );
+}
+
+const ProgramDetails=() => {
+  return(
+            <section id="program" className="w-inherit pr-4">
+              <Card className="border border-gray-300 border-b-4 border-b-gray-300 rounded-md">
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <BookOpen className="w-5 h-5" />
@@ -354,119 +397,9 @@ export default function StudentProfile() {
                     </p>
                   </div>
 
-                  
+
                 </CardContent>
               </Card>
             </section>
-          </div>
-        </div>
-
-        
-        
-        {/* Right Sidebar Navigation */}
-        <div className="hidden lg:block fixed right-4 top-[390px] w-64 h-[40vh] bg-white shadow-lg border border-gray-300 border-b-4 border-b-gray-300 rounded-md overflow-auto">
-          <div className="p-4">
-            <nav className="space-y-2">
-              <Button
-                variant="ghost"
-                className={`w-full justify-start ${
-                  activeSection === "personal"
-                    ? "bg-gray-100 text-[#ED1C24]"
-                    : "text-black"
-                } hover:bg-gray-100`}
-                onClick={() => scrollToSection("personal")}
-              >
-                <User
-                  className={`w-4 h-4 mr-2 ${
-                    activeSection === "personal" ? "text-[#ED1C24]" : "text-black"
-                  }`}
-                />
-                Personal Details
-              </Button>
-
-              <Button
-                variant="ghost"
-                className={`w-full justify-start ${
-                  activeSection === "educational"
-                    ? "bg-gray-100 text-[#ED1C24]"
-                    : "text-black"
-                } hover:bg-gray-100`}
-                onClick={() => scrollToSection("educational")}
-              >
-                <GraduationCap
-                  className={`w-4 h-4 mr-2 ${
-                    activeSection === "educational" ? "text-[#ED1C24]" : "text-black"
-                  }`}
-                />
-                Educational Details
-              </Button>
-
-              <Button
-                variant="ghost"
-                className={`w-full justify-start ${
-                  activeSection === "program"
-                    ? "bg-gray-100 text-[#ED1C24]"
-                    : "text-black"
-                } hover:bg-gray-100`}
-                onClick={() => scrollToSection("program")}
-              >
-                <BookOpen
-                  className={`w-4 h-4 mr-2 ${
-                    activeSection === "program" ? "text-[#ED1C24]" : "text-black"
-                  }`}
-                />
-                Program Details
-              </Button>
-            </nav>
-          </div>
-        </div>
-
-        {/* Mobile Navigation Button */}
-        <Button className="lg:hidden fixed bottom-4 right-4 z-50" onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}>
-          {isMobileNavOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-        </Button>
-
-        {/* Mobile Navigation Menu */}
-        {isMobileNavOpen && (
-          <div
-            className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
-            onClick={() => setIsMobileNavOpen(false)}
-          >
-            <div
-              className="fixed bottom-0 left-0 right-0 bg-white p-4 rounded-t-lg"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h3 className="font-semibold text-gray-800 mb-4">Quick Navigation</h3>
-              <div className="space-y-2">
-                <Button
-                  variant={activeSection === "personal" ? "default" : "ghost"}
-                  className="w-full justify-start"
-                  onClick={() => scrollToSection("personal")}
-                >
-                  <User className="w-4 h-4 mr-2" />
-                  Personal Details
-                </Button>
-                <Button
-                  variant={activeSection === "educational" ? "default" : "ghost"}
-                  className="w-full justify-start"
-                  onClick={() => scrollToSection("educational")}
-                >
-                  <GraduationCap className="w-4 h-4 mr-2" />
-                  Educational Details
-                </Button>
-                <Button
-                  variant={activeSection === "program" ? "default" : "ghost"}
-                  className="w-full justify-start"
-                  onClick={() => scrollToSection("program")}
-                >
-                  <BookOpen className="w-4 h-4 mr-2" />
-                  Program Details
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  )
+            );
 }
