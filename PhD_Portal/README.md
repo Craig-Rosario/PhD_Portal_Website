@@ -11,3 +11,9 @@ After cloning the repository and navigating to the project directory, run the fo
 ```bash
 npm install
 npm run dev
+```
+in a separate terminal navigate to the server folder and run:
+
+```bash
+npx nodemon server.js
+```
