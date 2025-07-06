@@ -10,10 +10,43 @@ import AllCourses from './pages/my-courses/AllCourses.jsx';
 import AllCourseDetails from './pages/my-courses/AllCourseDetails.jsx';
 import LearningGuides from './pages/my-courses/LearningGuides.jsx';
 import StudentProfile from './pages/profile-page/StudentProfile.jsx';
+import AssignmentsPanel from './pages/assignment-page/AssignmentPanel.jsx';
+import AssignmentDetails from './pages/assignment-page/AssignmentDetails.jsx';
 
 const App = () => {
   const [showLanding, setShowLanding] = useState(true);
-  
+  const assignments = [
+  {
+    id: "1",
+    title: "Experiment 1 - Process Scheduling",
+    status: "Pending",
+    deadline: "31/05/2025",
+    statusDescription: "Not yet submitted",
+    timeRemaining: "3 days left",
+    lastModified: "",
+    grade: "Not Graded",
+    comments: "-",
+    attachments: [],
+    submission: { name: "-", url: "#" },
+  },
+  {
+    id: "2",
+    title: "Experiment 2 - Disk Scheduling",
+    status: "Submitted",
+    deadline: "31/05/2025, 11:59 pm",
+    statusDescription: "Submitted for Grading",
+    timeRemaining: "Assignment was Submitted 2 hours early",
+    lastModified: "31/05/2025, 09:59 pm",
+    grade: "Not Graded",
+    comments: "Remarks From Faculty",
+    attachments: [
+      { name: "Exp2_WriteUp.docx", url: "#" },
+      { name: "ReferenceMaterial.pdf", url: "#" },
+    ],
+    submission: { name: "Experiment2.pdf", url: "#" },
+  },
+  // Add more assignments...
+]
   return(
     <Router>
       <div className="relative h-screen w-screen overflow-auto scroll-smooth font-[Marcellus]">
@@ -34,6 +67,8 @@ const App = () => {
             <Route path='courses/details' element={<AllCourseDetails/>}/>
             <Route path='courses/details/learning-guides' element={<LearningGuides/>}/>
             <Route path='profile' element={<StudentProfile/>}/>
+            <Route path="assignments" element={<AssignmentsPanel assignments={assignments} />} />
+            <Route path="assignments/:id" element={<AssignmentDetails assignments={assignments} />} />
           </Route>
         </Routes>
       </div>

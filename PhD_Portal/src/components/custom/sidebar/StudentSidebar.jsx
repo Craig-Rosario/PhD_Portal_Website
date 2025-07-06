@@ -1,35 +1,20 @@
-
-"use client";
-
 import {
-  AudioWaveform,
   BrainCog,
   House,
-  BookOpen,
   Megaphone,
   BookText,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
   Settings,
-  SquareTerminal,
-  Brain,
+  NotebookPen,
 } from "lucide-react";
-
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { SidebarTrigger } from "../../ui/sidebar";
-import { color } from "framer-motion";
 
 // Sample data
 const data = {
@@ -52,6 +37,11 @@ const data = {
       icon: BrainCog,
     },
     {
+      title: "Assignments",
+      url: "/student/assignments",
+      icon: NotebookPen,
+    },
+    {
       title: "Announcements",
       url: "/student/announcements",
       icon: Megaphone,
@@ -70,9 +60,10 @@ const data = {
   ]
 };
 
+
 export default function StudentSidebar(props) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" {...props} >
       <SidebarHeader>
         <NavUser user={data.user} />
       </SidebarHeader>
