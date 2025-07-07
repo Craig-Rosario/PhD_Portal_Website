@@ -1,10 +1,6 @@
-// src/Portal/StudentLayout.jsx
-
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Outlet } from "react-router-dom";
 import StudentSidebar from "../components/custom/sidebar/StudentSidebar";
-import somaiyaLogo from "../assets/SVU_KJSCE.png";
-import trustLogo from "../assets/Somaiya_Trust.png";
 import HeaderLayout from "./HeaderLayout";
 
 export default function StudentLayout() {
