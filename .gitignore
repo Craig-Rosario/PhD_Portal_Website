@@ -1,3 +1,13 @@
+# edit .gitignore
+cat > .gitignore <<'EOF'
+# OS junk
+.DS_Store
 
 # never commit envs
+.env
+**/.env
 Backend/.env
+EOF
+
+git add .gitignore
+git commit -m "chore: correct .gitignore patterns for env files and .DS_Store"
