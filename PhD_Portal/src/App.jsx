@@ -29,42 +29,20 @@ import GuideProfile from "./pages-guide/profile-page/GuideProfile.jsx";
 import FacultyLayout from "./layout/FacultyLayout.jsx";
 import FacultyDashboard from "./pages-faculty-coordinator/dashaboard/FacultyDashboard.jsx";
 import FacultyProfile from "./pages-faculty-coordinator/profile-page/FacultyProfile.jsx";
+import FacultyStudentList from "./pages-faculty-coordinator/student-list/FacultyStudentList.jsx";
+import FacultyAssignmentList from "./pages-faculty-coordinator/assignment-page/FacultyAssignmentList.jsx";
+import FacultySchedule from "./pages-faculty-coordinator/schedule-page/FacultySchedule.jsx";
+import AdminLayout from "./layout/AdminLayout.jsx";
+import AdminDashboard from "./pages-admin/dashboard/AdminDashboard.jsx";
+import UserManagement from "./pages-admin/user-management/UserManagement.jsx";
+import GuideAssignments from "./pages-admin/guide-assignments/GuideAssignments.jsx";
+import FacultyCoordinators from "./pages-admin/faculty-coordinators/FacultyCoordinators.jsx";
+import AdminSchedule from "./pages-admin/schedule/AdminSchedule.jsx";
+import Analytics from "./pages-admin/analytics/Analytics.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 const App = () => {
   const [showLanding, setShowLanding] = useState(true);
-  const assignments = [
-    {
-      id: "1",
-      title: "Experiment 1 - Process Scheduling",
-      status: "Pending",
-      deadline: "31/05/2025",
-      statusDescription: "Not yet submitted",
-      timeRemaining: "3 days left",
-      lastModified: "",
-      grade: "Not Graded",
-      comments: "-",
-      attachments: [],
-      submission: { name: "-", url: "#" },
-    },
-    {
-      id: "2",
-      title: "Experiment 2 - Disk Scheduling",
-      status: "Submitted",
-      deadline: "31/05/2025, 11:59 pm",
-      statusDescription: "Submitted for Grading",
-      timeRemaining: "Assignment was Submitted 2 hours early",
-      lastModified: "31/05/2025, 09:59 pm",
-      grade: "Not Graded",
-      comments: "Remarks From Faculty",
-      attachments: [
-        { name: "Exp2_WriteUp.docx", url: "#" },
-        { name: "ReferenceMaterial.pdf", url: "#" },
-      ],
-      submission: { name: "Experiment2.pdf", url: "#" },
-    },
-    // Add more assignments...
-  ];
   return (
     <Router>
       <Provider store={store}>
@@ -100,14 +78,8 @@ const App = () => {
                 element={<LearningGuides />}
               />
               <Route path="profile" element={<StudentProfile />} />
-              <Route
-                path="assignments"
-                element={<AssignmentsPanel assignments={assignments} />}
-              />
-              <Route
-                path="assignments/:id"
-                element={<AssignmentDetails assignments={assignments} />}
-              />
+              <Route path="assignments" element={<AssignmentsPanel />} />
+              <Route path="assignments/:id" element={<AssignmentDetails />} />
               <Route path="guide-allocation" element={<GuideAllocation />} />
             </Route>
 
@@ -135,13 +107,32 @@ const App = () => {
             <Route
               path="/faculty-coordinator"
               element={
-                <ProtectedRoute role="Admin">
+                <ProtectedRoute role="FacultyCoordinator">
                   <FacultyLayout />
                 </ProtectedRoute>
               }
             >
               <Route path="dashboard" element={<FacultyDashboard />} />
+              <Route path="students" element={<FacultyStudentList />} />
+              <Route path="assignments" element={<FacultyAssignmentList />} />
+              <Route path="schedule" element={<FacultySchedule />} />
               <Route path="profile" element={<FacultyProfile />} />
+            </Route>
+
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute role="Admin">
+                  <AdminLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="dashboard" element={<AdminDashboard />} />
+              <Route path="users" element={<UserManagement />} />
+              <Route path="guide-assignments" element={<GuideAssignments />} />
+              <Route path="faculty-coordinators" element={<FacultyCoordinators />} />
+              <Route path="schedule" element={<AdminSchedule />} />
+              <Route path="analytics" element={<Analytics />} />
             </Route>
           </Routes>
         </div>

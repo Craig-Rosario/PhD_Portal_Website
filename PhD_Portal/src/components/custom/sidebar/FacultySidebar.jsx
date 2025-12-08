@@ -32,66 +32,64 @@ const data = {
     {
       title: "Dashboard",
       url: "/faculty-coordinator/dashboard",
-      icon: House ,
+      icon: House,
       isActive: true,
     },
     {
       title: "Students",
-    //   url: "/guide/students",
+      url: "/faculty-coordinator/students",
       icon: Users,
     },
     {
       title: "Schedule",
-    //   url: "/guide/schedule",
+      url: "/faculty-coordinator/schedule",
       icon: CalendarDays,
     },
     {
       title: "Assignments",
-    //   url: "/guide/assignments",
+      url: "/faculty-coordinator/assignments",
       icon: NotebookPen,
     },
     {
       title: "Forum",
-    //   url: "/guide/forum",
+      //   url: "/faculty-coordinator/forum",
       icon: MessageSquareText,
     },
     {
       title: "Courses",
-    //   url: "/guide/courses",
+      //   url: "/faculty-coordinator/courses",
       icon: BrainCog,
     },
     // {
     //   title: "Announcements",
-    //   url: "/guide/announcements",
+    //   url: "/faculty-coordinator/announcements",
     //   icon: Megaphone,
     // },
     {
       title: "Resources",
-      url: "/guide/resources",
+      url: "https://library.somaiya.edu",
       icon: BookText,
-  
+      isExternal: true,
     },
     {
       title: "Settings",
-      url: "/guide/settings",
+      url: "/faculty-coordinator/settings",
       icon: Settings,
     },
-  ]
+  ],
 };
-
 
 export default function FacultySidebar(props) {
   return (
-    <Sidebar collapsible="icon" {...props} >
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <NavUser user={data.user} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain}/>
-      <SidebarTrigger className="absolute right-2 bottom-2" />
+        <NavMain items={data.navMain} />
+        <SidebarTrigger className="absolute right-2 bottom-2" />
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
   );
 }
-

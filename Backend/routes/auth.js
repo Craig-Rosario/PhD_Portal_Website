@@ -1,6 +1,101 @@
 const express = require("express");
 const passport = require("passport");
+const User = require("../Model/User");
+const config = require("../config/config");
+const { validateBody } = require("../middlewares/validateRequest");
+const { authSchemas } = require("../middlewares/validation");
 const router = express.Router();
+
+// Local login
+router.post("/login", validateBody(authSchemas.login), (req, res, next) => {
+  console.log("=== Login Request Received ===");
+  console.log("Request body:", { email: req.body.email, hasPassword: !!req.body.password });
+
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      console.log("Login error:", err);
+      return res.status(500).json({ message: "Authentication error", error: err.message });
+    }
+    if (!user) {
+      console.log("Login failed:", info?.message);
+      return res.status(401).json({ message: info?.message || "Invalid credentials" });
+    }
+
+    console.log("Passport authenticate successful, logging in user:", user.email);
+
+    req.login(user, (err) => {
+      if (err) {
+        console.log("req.login error:", err);
+        return res.status(500).json({ message: "Login error", error: err.message });
+      }
+
+      // Handle backwards compatibility for roles
+      if (user.role && !user.roles) {
+        user.roles = [user.role];
+      }
+
+      console.log("Login successful!", {
+        userId: user._id,
+        email: user.email,
+        roles: user.roles,
+        sessionID: req.sessionID,
+        isAuthenticated: req.isAuthenticated(),
+      });
+
+      return res.json({
+        message: "Login successful",
+        user: user,
+        needsRegistration: !user.registrationComplete,
+      });
+    });
+  })(req, res, next);
+});
+
+// Local registration
+router.post("/register", validateBody(authSchemas.register), async (req, res) => {
+  try {
+    const { email, password, roles } = req.body;
+
+    // Validate input
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required" });
+    }
+
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    // Create new user
+    const newUser = await User.create({
+      email,
+      password,
+      authMethod: "local",
+      roles: roles || ["Student"],
+      registrationComplete: false,
+    });
+
+    // Log the user in
+    req.login(newUser, (err) => {
+      if (err) {
+        return res.status(500).json({ message: "Registration successful but login failed" });
+      }
+
+      const userObject = newUser.toObject();
+      delete userObject.password;
+
+      res.status(201).json({
+        message: "Registration successful",
+        user: userObject,
+        needsRegistration: true,
+      });
+    });
+  } catch (error) {
+    console.error("Registration error:", error);
+    res.status(500).json({ message: "Registration failed", error: error.message });
+  }
+});
 
 router.get(
   "/google",
@@ -23,10 +118,16 @@ router.get(
 // Check authentication status
 router.get("/status", (req, res) => {
   if (req.isAuthenticated()) {
+    // Handle backwards compatibility for users that might not have been migrated yet
+    const user = req.user;
+    if (user.role && !user.roles) {
+      user.roles = [user.role];
+    }
+
     return res.json({
       isAuthenticated: true,
-      user: req.user,
-      needsRegistration: !req.user.registrationComplete,
+      user: user,
+      needsRegistration: !user.registrationComplete,
     });
   } else {
     return res.json({
@@ -42,7 +143,56 @@ router.get("/profile", (req, res) => {
   if (!req.isAuthenticated()) {
     return res.status(401).json({ message: "Not authenticated" });
   }
-  res.json({ user: req.user });
+
+  // Handle backwards compatibility for users that might not have been migrated yet
+  const user = req.user;
+  if (user.role && !user.roles) {
+    user.roles = [user.role];
+  }
+
+  res.json({ user: user });
+});
+
+// Debug endpoint to check user roles and authentication
+router.get("/debug", (req, res) => {
+  console.log("Auth debug request:", {
+    isAuthenticated: req.isAuthenticated(),
+    user: req.user,
+    session: req.session,
+  });
+
+  if (!req.isAuthenticated()) {
+    return res.json({
+      isAuthenticated: false,
+      user: null,
+      message: "Not authenticated",
+      sessionExists: !!req.session,
+    });
+  }
+
+  const user = req.user;
+  if (user.role && !user.roles) {
+    user.roles = [user.role];
+  }
+
+  res.json({
+    isAuthenticated: true,
+    user: {
+      id: user._id,
+      email: user.email,
+      roles: user.roles,
+      registrationComplete: user.registrationComplete,
+      personalDetails: user.personalDetails,
+    },
+    debug: {
+      hasAdminRole: user.roles && user.roles.includes("Admin"),
+      hasFacultyCoordinatorRole:
+        user.roles && user.roles.includes("FacultyCoordinator"),
+      hasGuideRole: user.roles && user.roles.includes("Guide"),
+      hasStudentRole: user.roles && user.roles.includes("Student"),
+      primaryRole: user.roles ? user.roles[0] : null,
+    },
+  });
 });
 
 // Success endpoint
@@ -52,11 +202,16 @@ router.get("/success", (req, res) => {
   }
   const needsRegistration = !req.user.registrationComplete;
 
-  res.redirect(
-    needsRegistration
-      ? "http://localhost:5173/register"
-      : "http://localhost:5173/student/dashboard",
-  );
+  if (needsRegistration) {
+    return res.redirect(config.getFrontendUrl(config.frontend.registerPath));
+  }
+
+  // Redirect based on user's primary role (first role in the array)
+  const primaryRole =
+    req.user.roles && req.user.roles.length > 0 ? req.user.roles[0] : "Student";
+  const redirectPath = config.getDashboardUrl(primaryRole);
+
+  res.redirect(redirectPath);
 });
 
 // Failure endpoint
